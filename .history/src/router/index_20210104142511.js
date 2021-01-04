@@ -1,9 +1,9 @@
-import { createRouter, createWebHashHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue";
 
 const routes = [
   {
-    path: "/",
+    path: "/login",
     name: "Login",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -12,7 +12,7 @@ const routes = [
       import(/* webpackChunkName: "Login" */ "../views/acount/Login.vue")
   },
   {
-    path: "/home",
+    path: "/",
     name: "Home",
     component: Home
   },
@@ -28,7 +28,7 @@ const routes = [
 ];
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(),
   routes
 });
 
