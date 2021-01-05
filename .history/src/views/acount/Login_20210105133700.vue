@@ -22,7 +22,7 @@
       </a-form>
       <div class="fs_12 text_center">
         <a class="color_white">忘记密码</a> |
-        <router-link class="color_white" to="/register">注册</router-link>
+        <router-link to="/register">注册</router-link>
       </div>
     </div>
   </div>

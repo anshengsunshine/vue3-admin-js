@@ -1,7 +1,7 @@
 <template>
   <div class="account">
     <div class="form_wrap">
-      <a-form name="custom-validation" ref="ruleForm">
+      <a-form name="custom-validation" ref="ruleForm" @finish="handFinish">
         <a-form-item>
           <label>用户名</label>
           <a-input type="text" autocomplete="off" />
@@ -13,7 +13,20 @@
         </a-form-item>
 
         <a-form-item>
-          <captcha />
+          <label>确认密码</label>
+          <a-input type="password" autocomplete="off" />
+        </a-form-item>
+
+        <a-form-item>
+          <label>验证码</label>
+          <a-row :gutter="15">
+            <a-col :span="14">
+              <a-input type="text" autocomplete="off" />
+            </a-col>
+            <a-col :span="10">
+              <a-button type="primary" block>获取验证码</a-button>
+            </a-col>
+          </a-row>
         </a-form-item>
 
         <a-form-item>
@@ -21,22 +34,17 @@
         </a-form-item>
       </a-form>
       <div class="fs_12 text_center">
-        <a class="color_white">忘记密码</a> |
-        <router-link class="color_white" to="/register">注册</router-link>
+        <a class="color_white">忘记密码</a>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { onMounted, reactive } from "vue";
-import Captcha from "@/components/captcha/Index";
+import { onMounted, reactive, toRefs } from "vue";
 
 export default {
   name: "Login",
-  components: {
-    Captcha,
-  },
   setup(props) {
     const formConfig = reactive({
       layout: {
@@ -44,11 +52,14 @@ export default {
         wrapperCol: { span: 14 },
       },
     });
+    const data = toRefs(formConfig);
 
     onMounted(() => {});
+    const handFinish = () => {};
 
     return {
-      formConfig,
+      ...data,
+      handFinish,
     };
   },
 };

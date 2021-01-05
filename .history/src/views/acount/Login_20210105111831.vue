@@ -13,7 +13,7 @@
         </a-form-item>
 
         <a-form-item>
-          <captcha />
+          <captch />
         </a-form-item>
 
         <a-form-item>
@@ -22,7 +22,7 @@
       </a-form>
       <div class="fs_12 text_center">
         <a class="color_white">忘记密码</a> |
-        <router-link class="color_white" to="/register">注册</router-link>
+        <a class="color_white">注册</a>
       </div>
     </div>
   </div>
@@ -30,12 +30,12 @@
 
 <script>
 import { onMounted, reactive } from "vue";
-import Captcha from "@/components/captcha/Index";
+import Captch from "@/components/captcha/Index";
 
 export default {
   name: "Login",
-  components: {
-    Captcha,
+  components:{
+    Captcha
   },
   setup(props) {
     const formConfig = reactive({
