@@ -182,7 +182,7 @@ export default {
     const getCode = () => {
       // 用户名不存在的情况
       if (!formConfig.account_form.username) {
-        message.info("用户名不能为空");
+        message.error("用户名不能为空");
         return false;
       }
       // 优先判断定时器是否存在，存在则先清除后开启
