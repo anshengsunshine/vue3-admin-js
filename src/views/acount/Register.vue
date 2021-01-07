@@ -43,7 +43,14 @@
               />
             </a-col>
             <a-col :span="10">
-              <a-button type="primary" block>获取验证码</a-button>
+              <a-button
+                @click="getCode"
+                type="primary"
+                block
+                :loading="btn_loading"
+                :disabled="btn_disabled"
+                >{{ btn_text }}</a-button
+              >
             </a-col>
           </a-row>
         </a-form-item>
@@ -67,6 +74,7 @@ import {
   checkCode as code,
 } from "../../utils/varification";
 import { onMounted, reactive, toRefs } from "vue";
+import { message } from "ant-design-vue";
 
 export default {
   name: "Login",
@@ -77,7 +85,8 @@ export default {
     let checkUsername = async (rule, value, callback) => {
       if (!value) {
         return Promise.reject("请输入手机号"); // 校验为空
-      } else if (!phone(value)) {  // 手机号输入有误
+      } else if (!phone(value)) {
+        // 手机号输入有误
         return Promise.reject("请输入11位数字的手机号");
       } else {
         return Promise.resolve();
@@ -150,16 +159,52 @@ export default {
         code: [{ validator: checkCode, trigger: "change" }],
       },
     });
-    const data = toRefs(formConfig);
+    const dataItem = reactive({
+      // 获取验证码的按钮 - 文本、loading等待、disabled不可点击、sec倒计时
+      btn_text: "获取验证码",
+      btn_loading: false,
+      btn_disabled: false,
+      sec: 5,
+      // 定义定时器
+      timer: null,
+    });
+    const dataForm = toRefs(formConfig);
+    const data = toRefs(dataItem);
 
     onMounted(() => {});
     const handFinish = (value) => {
       console.log(value);
     };
 
+    /**
+     * 获取验证码
+     */
+    const getCode = () => {
+      // 用户名不存在的情况
+      if (!formConfig.account_form.username) {
+        message.info("用户名不能为空");
+        return false;
+      }
+      // 优先判断定时器是否存在，存在则先清除后开启
+      if (dataItem.timer) {
+        clearInterval(dataItem.timer);
+      }
+      // 开启定时器
+      dataItem.timer = setInterval(() => {
+        const s = dataItem.sec--;
+        dataItem.btn_text = `${s}秒`;
+        if (s <= 0) {
+          clearInterval(dataItem.timer);
+          dataItem.btn_text = `重新获取`;
+        }
+      }, 1000);
+    };
+
     return {
       ...data,
+      ...dataForm,
       handFinish,
+      getCode,
     };
   },
 };
