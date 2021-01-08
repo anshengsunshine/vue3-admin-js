@@ -55,13 +55,14 @@
           </a-row>
         </a-form-item>
 
-         <a-form-item>
+        <a-form-item>
           <captcha />
         </a-form-item>
 
-
         <a-form-item>
-          <a-button type="primary" html-type="submit">登录</a-button>
+          <router-link to="/">
+            <a-button type="primary" html-type="submit">登录</a-button>
+          </router-link>
         </a-form-item>
       </a-form>
       <div class="fs_12 text_center">
