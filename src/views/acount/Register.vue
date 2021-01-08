@@ -55,6 +55,11 @@
           </a-row>
         </a-form-item>
 
+         <a-form-item>
+          <captcha />
+        </a-form-item>
+
+
         <a-form-item>
           <a-button type="primary" html-type="submit">登录</a-button>
         </a-form-item>
@@ -73,11 +78,15 @@ import {
   checkPassword as password,
   checkCode as code,
 } from "../../utils/varification";
+import Captcha from "@/components/captcha/Index";
 import { onMounted, reactive, toRefs } from "vue";
 import { message } from "ant-design-vue";
 
 export default {
   name: "Login",
+  components: {
+    Captcha,
+  },
   setup(props) {
     /**
      * 验证-手机号
