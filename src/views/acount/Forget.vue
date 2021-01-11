@@ -67,7 +67,7 @@
       </a-form>
       <div class="fs_12 text_center">
         <router-link class="color_white" to="/forget">忘记密码</router-link> | 
-        <router-link class="color_white" to="/login">登录</router-link>
+        <router-link class="color_white" to="/">登录</router-link>
       </div>
     </div>
   </div>
