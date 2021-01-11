@@ -61,12 +61,13 @@
 
         <a-form-item>
           <router-link to="/">
-            <a-button type="primary" html-type="submit">登录</a-button>
+            <a-button type="primary" html-type="submit">注册</a-button>
           </router-link>
         </a-form-item>
       </a-form>
       <div class="fs_12 text_center">
-        <a class="color_white">忘记密码</a>
+        <router-link class="color_white" to="/forget">忘记密码</router-link> | 
+        <router-link class="color_white" to="/login">登录</router-link>
       </div>
     </div>
   </div>
