@@ -1,15 +1,13 @@
 <template>
   <div>
-    内容部分
+    角色管理
   </div>
 </template>
 
 <script>
 export default {
-  nsme: "Main",
+  name: "Role",
 };
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style></style>

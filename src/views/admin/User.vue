@@ -1,12 +1,10 @@
 <template>
-  <div>
-    侧边栏
-  </div>
+  <div>用户管理</div>
 </template>
 
 <script>
 export default {
-  nsme: "Aside",
+  name: "User",
 };
 </script>
 

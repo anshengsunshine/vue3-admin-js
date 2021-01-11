@@ -1,12 +1,16 @@
 <template>
   <a-layout id="layout_main">
+
     <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
-      <layout-aside />
+      <LayoutAside />
     </a-layout-sider>
+
     <a-layout>
+
       <a-layout-header style="background: #fff; padding: 0">
-        <layout-header />
+        <LayoutHeader />
       </a-layout-header>
+
       <a-layout-content
         :style="{
           margin: '24px 16px',
@@ -15,16 +19,17 @@
           minHeight: '280px',
         }"
       >
-        <layout-main />
+        <LayoutMain />
       </a-layout-content>
+
     </a-layout>
   </a-layout>
 </template>
 
 <script>
-import LayoutAside from "./componrnts/Aside";
-import LayoutHeader from "./componrnts/Header";
-import LayoutMain from "./componrnts/Main";
+import LayoutAside from "./components/Aside";
+import LayoutHeader from "./components/Header";
+import LayoutMain from "./components/Main";
 
 import { reactive, toRefs } from "vue";
 

@@ -1,4 +1,5 @@
 import { createRouter, createWebHashHistory } from "vue-router";
+import Role from "../views/admin/Role.vue";
 import Home from "../views/Home.vue";
 
 const routes = [
@@ -6,6 +7,8 @@ const routes = [
   {
     path: "/",
     name: "Login",
+    hidden:true,
+    meta: { title: "登录" },
     component: () =>
       import(/* webpackChunkName: "Login" */ "../views/acount/Login.vue")
   },
@@ -13,6 +16,8 @@ const routes = [
   {
     path: "/register",
     name: "Register",
+    hidden:true,
+    meta: { title: "注册" },
     component: () =>
       import(/* webpackChunkName: "Register" */ "../views/acount/Register.vue")
   },
@@ -20,26 +25,53 @@ const routes = [
   {
     path: "/forget",
     name: "Forget",
+    hidden:true,
+    meta: { title: "忘记密码" },
     component: () =>
       import(/* webpackChunkName: "Forget" */ "../views/acount/Forget.vue")
   },
-  // 首页
+  // 管理后台 - 首页
   {
     path: "/index",
     name: "Index",
+    meta: { title: "首页" },
     component: () =>
       import(/* webpackChunkName: "Index" */ "../views/layout/Index.vue")
   },
-  // 信息管理
+  // 管理后台 - 信息管理
   {
-    path: "/newsIndex",
-    name: "NewsIndex",
+    path: "/adminIndex",
+    name: "AdminIndex",
+    meta: {
+      title: "管理总台"
+    },
     component: () =>
-      import(/* webpackChunkName: "Index" */ "../views/layout/Index.vue")
+      import(/* webpackChunkName: "Index" */ "../views/layout/Index.vue"),
+    children: [
+      {
+        path: "/role",
+        name: "Role",
+        meta: {
+          title: "角色管理"
+        },
+        component: () =>
+          import(/* webpackChunkName: "Role" */ "../views/admin/Role.vue"),
+      },
+      {
+        path: "/user",
+        name: "User",
+        meta: {
+          title: "用户管理"
+        },
+        component: () => 
+          import(/* webpackChunkName: "User" */ "../views/admin/User.vue"),
+      }
+    ]
   },
   {
     path: "/news",
     name: "News",
+    meta: { title: "信息管理" },
     component: () =>
       import(/* webpackChunkName: "news" */ "../views/news/Index.vue")
   }
