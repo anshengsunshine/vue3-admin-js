@@ -34,7 +34,10 @@ const routes = [
   {
     path: "/index",
     name: "Index",
-    meta: { title: "首页" },
+    meta: {
+      title: "首页",
+      icon: "icon_aside_home"
+    },
     component: () =>
       import(/* webpackChunkName: "Index" */ "../views/layout/Index.vue")
   },
@@ -43,7 +46,8 @@ const routes = [
     path: "/adminIndex",
     name: "AdminIndex",
     meta: {
-      title: "管理总台"
+      title: "管理总台",
+      icon: "icon_aside_console"
     },
     component: () =>
       import(/* webpackChunkName: "Index" */ "../views/layout/Index.vue"),
@@ -71,9 +75,38 @@ const routes = [
   {
     path: "/news",
     name: "News",
-    meta: { title: "信息管理" },
+    meta: {
+      title: "信息管理",
+      icon: "icon_aside_informtion"
+
+    },
     component: () =>
-      import(/* webpackChunkName: "news" */ "../views/news/Index.vue")
+      import(/* webpackChunkName: "Index" */ "../views/layout/Index.vue"),
+    // import(/* webpackChunkName: "news" */ "../views/news/Index.vue")
+  },
+  {
+    path: "/user",
+    name: "User",
+    meta: {
+      title: "用户管理",
+      icon: "icon_aside_user"
+
+    },
+    component: () =>
+      import(/* webpackChunkName: "Index" */ "../views/layout/Index.vue"),
+    // import(/* webpackChunkName: "news" */ "../views/news/Index.vue")
+  },
+  {
+    path: "/produce",
+    name: "Produce",
+    meta: {
+      title: "产品管理",
+      icon: "icon_aside_product"
+
+    },
+    component: () =>
+      import(/* webpackChunkName: "Index" */ "../views/layout/Index.vue"),
+
   }
 ];
 
