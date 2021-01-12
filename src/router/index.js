@@ -1,6 +1,4 @@
 import { createRouter, createWebHashHistory } from "vue-router";
-import Role from "../views/admin/Role.vue";
-import Home from "../views/Home.vue";
 
 const routes = [
   // 登录

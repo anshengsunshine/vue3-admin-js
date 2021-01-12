@@ -60,14 +60,10 @@ export default {
 
     // 定义方法
     const selectMenu = ({ item, key, keyPath }) => {
-      console.log("item", item);
-      console.log("key", key);
-      console.log("keyPath", keyPath);
       data.selectedKeys = [key];
       localStorage.setItem("selectedKeys", key);
     };
     const openMenu = (openKeys) => {
-      console.log("openKeys", openKeys);
       localStorage.setItem("openKeys", openKeys);
     };
 
