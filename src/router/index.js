@@ -7,7 +7,7 @@ const routes = [
   {
     path: "/",
     name: "Login",
-    hidden:true,
+    hidden: true,
     meta: { title: "登录" },
     component: () =>
       import(/* webpackChunkName: "Login" */ "../views/acount/Login.vue")
@@ -16,7 +16,7 @@ const routes = [
   {
     path: "/register",
     name: "Register",
-    hidden:true,
+    hidden: true,
     meta: { title: "注册" },
     component: () =>
       import(/* webpackChunkName: "Register" */ "../views/acount/Register.vue")
@@ -25,7 +25,7 @@ const routes = [
   {
     path: "/forget",
     name: "Forget",
-    hidden:true,
+    hidden: true,
     meta: { title: "忘记密码" },
     component: () =>
       import(/* webpackChunkName: "Forget" */ "../views/acount/Forget.vue")
@@ -63,7 +63,7 @@ const routes = [
         meta: {
           title: "用户管理"
         },
-        component: () => 
+        component: () =>
           import(/* webpackChunkName: "User" */ "../views/admin/User.vue"),
       }
     ]

@@ -15,17 +15,8 @@
         >
 
         <!-- 这里是子级 -->
-        <a-sub-menu v-else :key="item.path">
-          <template #title>
-            <span>{{ item.meta && item.meta.title }}</span>
-          </template>
+        <Menu :menu="item" v-else />
 
-          <template v-if="item.children.length">
-            <a-menu-item :key="child.path" v-for="child in item.children">{{
-              child.meta && child.meta.title
-            }}</a-menu-item>
-          </template>
-        </a-sub-menu>
       </template>
     </template>
   </a-menu>
@@ -35,8 +26,13 @@
 import { reactive } from "vue";
 // 路由
 import { useRouter } from "vue-router";
+// 组件
+import Menu from "./Menu";
 export default {
   nsme: "Aside",
+  components: {
+    Menu,
+  },
   setup() {
     // console.log(useRouter());
 
@@ -58,5 +54,3 @@ export default {
   },
 };
 </script>
-
-<style></style>
