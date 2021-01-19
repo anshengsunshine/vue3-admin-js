@@ -17,7 +17,7 @@
         </a-form-item>
 
         <a-form-item>
-          <a-button type="primary" html-type="submit">登录</a-button>
+          <a-button type="primary" html-type="submit" @click="submit">登录</a-button>
         </a-form-item>
       </a-form>
       <div class="fs_12 text_center">
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, getCurrentInstance } from "vue";
 import Captcha from "@/components/captcha/Index";
 
 export default {
@@ -37,7 +37,13 @@ export default {
   components: {
     Captcha,
   },
-  setup(props) {
+  setup(props, { root }) {
+    console.log(getCurrentInstance()) 
+
+    // ctx 相当于 vue2.0 的 this 对象
+    // ctx 对象仅在 “开发环境” 可用  --->  “属性” 和 “方法”），“生产环境” 不可用 ---> “属性”  ，
+    const { proxy } = getCurrentInstance();
+
     const formConfig = reactive({
       layout: {
         labelCol: { span: 4 },
@@ -47,8 +53,14 @@ export default {
 
     onMounted(() => {});
 
+    const submit = () => {
+      console.log($axios);
+      proxy.$axios.post("getSms");
+    };
+
     return {
       formConfig,
+      submit,
     };
   },
 };
