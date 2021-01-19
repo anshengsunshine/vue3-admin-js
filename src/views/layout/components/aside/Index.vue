@@ -1,6 +1,7 @@
 <template>
   <h1 id="logo">
-    <img :src="data.logo" />
+    <img v-if="!collapsed" :src="data.logo" />
+    <img v-else :src="data.logo_s" />
   </h1>
   <a-menu
     class="aside_menu"
@@ -15,10 +16,15 @@
       <!-- 判断是否显示 -->
       <template v-if="!item.hidden">
         <!-- 这里是一级 -->
-        <a-menu-item v-if="!item.children" :key="item.path">
-          <router-link :to="item.path">
-            <i class="icon icon_size_21 mb_-5" :class="item.meta && item.meta.icon"></i>
-            {{ item.meta && item.meta.title }}
+        <a-menu-item v-if="hasOnlyChildren(item)" :key="item.path">
+          <router-link :to="item.children[0].path">
+            <span class="anticon">
+              <svg-icon
+                className="aside_svg"
+                :iconName="item.meta && item.meta.icon"
+              ></svg-icon>
+            </span>
+            <span>{{ item.children[0].meta && item.children[0].meta.title }}</span>
           </router-link>
         </a-menu-item>
 
@@ -40,6 +46,12 @@ export default {
   components: {
     Menu,
   },
+  props: {
+    collapsed: {
+      type: Boolean,
+      default: false,
+    },
+  },
   setup() {
     // console.log(useRouter());
 
@@ -53,18 +65,35 @@ export default {
         ? [localStorage.getItem("selectedKeys")]
         : [],
       openKeys: localStorage.getItem("openKeys")
-        ? [localStorage.getItem("openKeys")]
+        ? JSON.parse(localStorage.getItem("openKeys"))
         : [],
       logo: require("@/assets/images/logo.png"),
+      logo_s: require("@/assets/images/logo_s.png"),
     });
 
     // 定义方法
+    // 选择菜单
     const selectMenu = ({ item, key, keyPath }) => {
       data.selectedKeys = [key];
       localStorage.setItem("selectedKeys", key);
     };
+    // 展开/关闭菜单
     const openMenu = (openKeys) => {
-      localStorage.setItem("openKeys", openKeys);
+      localStorage.setItem("openKeys", JSON.stringify(openKeys));
+    };
+    // 检测是否只有一个子路由
+    const hasOnlyChildren = (data) => {
+      // 不存在子级的情况
+      if (!data.children) {
+        return false;
+      }
+      // 过滤隐藏的子级路由
+      const routers = data.children.filter((item) => (item.hidden ? false : true));
+      // 判断最终结果
+      if (routers.length === 1) {
+        return true;
+      }
+      return false;
     };
 
     return {
@@ -72,6 +101,7 @@ export default {
       routers,
       selectMenu,
       openMenu,
+      hasOnlyChildren,
     };
   },
 };

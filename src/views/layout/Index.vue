@@ -1,12 +1,12 @@
 <template>
   <a-layout id="layout_main">
     <a-layout-sider v-model:collapsed="collapsed" :trigger="null" collapsible>
-      <LayoutAside />
+      <LayoutAside :collapsed="collapsed" />
     </a-layout-sider>
 
     <a-layout>
       <a-layout-header style="background: #fff; padding: 0">
-        <LayoutHeader />
+        <LayoutHeader @collapsed="handleCollapsed" />
       </a-layout-header>
 
       <a-layout-content
@@ -48,11 +48,18 @@ export default {
   setup(props) {
     const data = reactive({
       selectedKeys: ["1"],
-      collapsed: false,
+      collapsed: JSON.parse(localStorage.getItem("collapsed")),
     });
+
+    const handleCollapsed = (value) => {
+      const bool = !data.collapsed;
+      data.collapsed = bool;
+      localStorage.setItem("collapsed", bool);
+    };
 
     return {
       ...toRefs(data),
+      handleCollapsed,
     };
   },
 };
