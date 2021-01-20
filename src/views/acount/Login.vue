@@ -17,9 +17,10 @@
         </a-form-item>
 
         <a-form-item>
-          <a-button type="primary" html-type="submit" @click="submit">登录</a-button>
+          <a-button type="primary" html-type="submit">登录</a-button>
         </a-form-item>
       </a-form>
+      <a-button type="primary" @click="submit">111111111111</a-button>
       <div class="fs_12 text_center">
         <router-link class="color_white" to="/forget">忘记密码</router-link> |
         <router-link class="color_white" to="/register">注册</router-link>
@@ -31,6 +32,8 @@
 <script>
 import { onMounted, reactive, getCurrentInstance } from "vue";
 import Captcha from "@/components/captcha/Index";
+// 导入api
+import { GetCode } from "@/api/account";
 
 export default {
   name: "Login",
@@ -38,7 +41,7 @@ export default {
     Captcha,
   },
   setup(props, { root }) {
-    console.log(getCurrentInstance()) 
+    console.log(getCurrentInstance());
 
     // ctx 相当于 vue2.0 的 this 对象
     // ctx 对象仅在 “开发环境” 可用  --->  “属性” 和 “方法”），“生产环境” 不可用 ---> “属性”  ，
@@ -54,8 +57,7 @@ export default {
     onMounted(() => {});
 
     const submit = () => {
-      console.log($axios);
-      proxy.$axios.post("getSms");
+      GetCode({ id: "11", name: "vv" });
     };
 
     return {

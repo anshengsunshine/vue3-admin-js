@@ -29,4 +29,19 @@ module.exports = {
             }
         }
     },
+    devServer: {
+        open: true, //运行项目后是否自动打开
+        host: "0.0.0.0", //可以让外部访问
+        port: 8000,
+        proxy: {
+            '/api': {
+                target: 'http://www.web-jshtml.cn/api/vue3/',  // 接口地址
+                ws: false,  // webstock
+                changeOrigin: true,  // 是否开启跨域
+                pathRewrite: {
+                    '^/api': ''
+                }
+            },
+        }
+    }
 } 
