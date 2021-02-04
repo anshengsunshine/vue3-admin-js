@@ -19,9 +19,9 @@
       >
         <LayoutMain />
       </a-layout-content>
-       <a-layout-footer>
+      <!-- <a-layout-footer>
       <layoutFooter class="layout_footer_wrap" />
-    </a-layout-footer>
+    </a-layout-footer> -->
     </a-layout>
   </a-layout>
 </template>
@@ -30,7 +30,7 @@
 import LayoutAside from "./components/aside/Index";
 import LayoutHeader from "./components/Header";
 import LayoutMain from "./components/Main";
-import LayoutFooter from "./components/Footer";
+// import LayoutFooter from "./components/Footer";
 
 import { reactive, toRefs } from "vue";
 
@@ -48,7 +48,7 @@ export default {
     LayoutAside,
     LayoutHeader,
     LayoutMain,
-    LayoutFooter,
+    // LayoutFooter,
   },
   setup(props) {
     const data = reactive({
